@@ -1,0 +1,7 @@
+[Unit]
+Description=isync %I synchronization
+Documentation=man:mbsync(1)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mbsync -c "${XDG_CONFIG_HOME}/isync/mbsyncrc" %I

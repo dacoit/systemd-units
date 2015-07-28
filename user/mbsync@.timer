@@ -1,0 +1,12 @@
+[Unit]
+Description=Timed isync %I synchronization
+Documentation=man:mbsync(1)
+PartOf=mbsync@%i.service
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+Unit=mbsync@%i.service
+
+[Install]
+WantedBy=default.target

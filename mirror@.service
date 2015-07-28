@@ -1,0 +1,8 @@
+[Unit]
+Description=Incrementally Update Backup to %I
+RequiresMountsFor=/mnt/mirror
+Wants=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "rsync -aAXHPv --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*} /* %I/backup-$(date +%Y-%%m-%d-%%H-%M-%S) --link-dest %I/$(ls -t %I | head -1)"

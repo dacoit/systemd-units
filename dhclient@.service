@@ -1,0 +1,17 @@
+[Unit]
+Description=dhclient on %I
+Documentation=man:dhclient(8)
+Wants=network.target
+Before=network.target
+BindsTo=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device
+
+[Service]
+Type=forking
+PIDFile=/run/dhclient-%I.pid
+ExecStart=/usr/bin/dhclient -pf /run/dhclient-%I.pid %I
+# Will kill instance without releasing lease (-r)
+ExecStop=/usr/bin/dhclient -pf /run/dhclient-%I.pid -x %I
+
+[Install]
+WantedBy=multi-user.target
