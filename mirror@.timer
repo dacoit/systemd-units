@@ -3,7 +3,6 @@ Description=Timed Incremental Backup Update to %I
 PartOf=mirror@%i.service
 
 [Timer]
-OnBootSec=10m
 OnCalendar=Daily
 Unit=mirror@%i.service
 
