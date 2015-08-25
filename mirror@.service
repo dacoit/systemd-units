@@ -5,4 +5,4 @@ Wants=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c "rsync -aAXHPv --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*} /* %I/backup-$(date +%Y-%%m-%d-%%H-%M-%S) --link-dest %I/$(ls -t %I | head -1)"
+ExecStart=/bin/bash -c "rsync -aAXHPv --one-file-system /* %I/backup-$(date +%Y-%%m-%d-%%H-%M-%S) --link-dest %I/$(ls -t %I | head -1)"
